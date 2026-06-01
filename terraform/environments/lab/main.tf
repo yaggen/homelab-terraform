@@ -1,12 +1,10 @@
 locals {
   vms = {
     vm1 = {
-      name = "debian-vm-01"
-      node = "labbet02"
-    }
-    vm2 = {
-      name = "debian-vm-02"
+      name = "backup"
       node = "labbet03"
+      memory = 4096
+      cores = 2
     }
   }
 }
@@ -17,6 +15,8 @@ module "vms" {
 
   name        = each.value.name
   target_node = each.value.node
+  memory      = each.value.memory
+  cores       = each.value.cores
   template    = "debian-13-cloud-template"
 
   ci_user        = "yag"
