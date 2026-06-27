@@ -19,7 +19,20 @@ resource "proxmox_vm_qemu" "vm" {
     type    = "disk"
     storage = var.storage
   }
+  
+  # Extra disk
+  dynamic "disk" {
+  for_each = var.extra_disk_size != null ? [1] : []
 
+  content {
+    slot    = "scsi1"
+    storage = var.extra_disk_storage
+    size    = var.extra_disk_size
+    type    = "disk"
+  }
+}
+
+  # Cloud init disk
   disk {
     slot    = "ide1"
     type    = "cloudinit"

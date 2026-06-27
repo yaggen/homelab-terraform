@@ -34,6 +34,16 @@ variable "disk_size" {
   default     = "20G"
 }
 
+variable "extra_disk_size" {
+  type    = string
+  default = null
+}
+
+variable "extra_disk_storage" {
+  type    = string
+  default = "local-lvm"
+}
+
 variable "storage" {
   description = "Storage pool"
   type        = string
